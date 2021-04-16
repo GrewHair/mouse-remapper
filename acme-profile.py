@@ -13,7 +13,7 @@ easier to press, drag, and chord.
 # Listen to events from the mouse
 # TODO Implement mouse finder (right now upon every boot
 # I have to search for it manually)
-mouse = evdev.InputDevice("/dev/input/event9")   # /dev/input/event?
+mouse = evdev.InputDevice("/dev/input/event7")   # /dev/input/event?
 
 # Create virtual mouse
 virtual_mouse = evdev.UInput.from_device(mouse, name="virtual-mouse")
@@ -35,8 +35,9 @@ async def handle_mouse():
                 virtual_mouse.write_event(event)
         else:
             virtual_mouse.write_event(event)
-                                                                                        
+
 asyncio.ensure_future(handle_mouse())
+# asyncio.create_task(handle_mouse())
 
 event_loop = asyncio.get_event_loop()
 event_loop.run_forever()
